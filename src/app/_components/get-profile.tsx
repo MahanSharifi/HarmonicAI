@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
+import { env } from '~/env';
+
 
 export async function redirectToAuthCodeFlow(clientId: string) {
     const verifier = generateCodeVerifier(128);
@@ -84,8 +86,6 @@ interface Image {
 
 // Because this is a literal single page application
 // we detect a callback from Spotify by checking for the hash fragment
-
-import { env } from '~/env';
 const clientId = env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
 
 export async function fetchProfile(code: string): Promise<UserProfile> {
@@ -95,9 +95,6 @@ export async function fetchProfile(code: string): Promise<UserProfile> {
 
     return await result.json();
 }
-
-
-
 
 export default function Profile() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -136,6 +133,8 @@ export default function Profile() {
       <h1>Welcome, {profile.display_name}!</h1>
       <p>Email: {profile.email}</p>
       <p>Country: {profile.country}</p>
+
+    
       {/* Display other profile data as needed */}
     </div>
   );

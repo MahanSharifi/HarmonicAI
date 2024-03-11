@@ -4,7 +4,8 @@ import Link from "next/link";
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
-import Profile from "./_components/get-profile";
+import Profile from "~/app/_components/get-profile";
+import GoogleMapsComponent from "./_components/get-google-maps";
 
 export default async function Home() {
   noStore();
@@ -59,6 +60,7 @@ export default async function Home() {
           </div>
         </div>
         <Profile/>
+        <GoogleMapsComponent/>
         <CrudShowcase />
       </div>
     </main>

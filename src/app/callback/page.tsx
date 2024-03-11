@@ -5,8 +5,6 @@ import { useSearchParams } from 'next/navigation'
 import { env } from '~/env';
 
 
-
-// const clientId = "325fb7e31b3d4945985c2aa0e38d3df9";
 const clientId = env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
 
 export async function getAccessToken(clientId: string, code: string) {
@@ -25,12 +23,10 @@ export async function getAccessToken(clientId: string, code: string) {
         body: params
     });
     const payload  =  await result.json();
-    console.log('callback')
-    console.log({payload})
+
 
     const { access_token } = payload
-    localStorage.setItem('access_token', access_token);
-    console.log('returned access_token', access_token)
+
     return access_token;
 }
 
@@ -44,8 +40,10 @@ export default function Callback() {
     if (code) {
       getAccessToken(clientId, code).then((accessToken) => {
         // Store the access token in local storage or state management solution
-        localStorage.setItem('accessToken', accessToken)
-        router.push('/')
+        if (accessToken) {
+          localStorage.setItem('accessToken', accessToken);
+          router.push('/');
+        }
       });
     }
   }, [code, router]);
