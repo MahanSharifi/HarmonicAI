@@ -113,7 +113,8 @@ export default function Profile() {
     if (storedAccessToken !== '' && storedAccessToken !== 'undefined') {
       fetchProfile(storedAccessToken).then((profileData) => {
         setProfile(profileData);
-        console.log({profileData})
+        localStorage.removeItem('accessToken');
+        console.log('setting profileData', profileData);
       });
     }
   }, []);
@@ -133,8 +134,6 @@ export default function Profile() {
       <h1>Welcome, {profile.display_name}!</h1>
       <p>Email: {profile.email}</p>
       <p>Country: {profile.country}</p>
-
-    
       {/* Display other profile data as needed */}
     </div>
   );

@@ -30,10 +30,8 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        {/* <SimpleMap/> */}
-        {/* <Profile/> */}
+        <Profile/>
         <GoogleMapsComponent/>
-        {/* <CrudShowcase /> */}
       </div>
     </main>
   );

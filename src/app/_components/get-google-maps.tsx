@@ -4,6 +4,8 @@
 import React from 'react'
 import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { env } from '~/env';
+import { Button } from '~/components/ui/button';
+import { listenNowAlbums } from '../music/data/albums';
 
 const containerStyle = {
     width: '800px',
@@ -46,33 +48,9 @@ function GoogleMapsComponent() {
         ]
     }
 
-    interface DataItem {
-        position: {
-            lat: number;
-            lng: number;
-        };
-        title: string;
-        username: string;
-    }
 
-    const data: DataItem[] = [
-        {
-            position: {
-                lat: 43.472778,
-                lng: -80.543611
-            },
-            title: 'lazeez',
-            username: 'eden'
-        },
-        { 
-            position: { 
-                lat: 43.467998128, 
-                lng: -80.537331184 
-            },
-            title: 'laurier',
-            username: 'dana porter'
-        }
-    ]
+
+
 
     return isLoaded ? (
         <GoogleMap
@@ -84,14 +62,17 @@ function GoogleMapsComponent() {
             onUnmount={onUnmount}
             options={options}
         >
-            {data.map((item, index) => (
+            {listenNowAlbums.map((item, index) => (
                 <Marker
                     key={index}
                     position={item.position}
-                    title={item.title}
+                    title={item.name}
                 >
                     <InfoWindow>
-                        <h1 className="text-black">{item.username}</h1>
+                        <>
+                        <h1 className="text-black">{item.locationName}</h1>
+                        <iframe  src={`https://open.spotify.com/embed/playlist/${item.playlistID}?utm_source=generator`} width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </>
                     </InfoWindow>
                 </Marker>
             ))}
