@@ -88,6 +88,7 @@ export function AlbumArtwork({
       </ContextMenu>
       <div className="space-y-1 text-sm">
         <h3 className="font-medium leading-none">{album.name}</h3>
+        <p className="text-m text-muted-foreground">{album.location}</p>
         <p className="text-xs text-muted-foreground">{album.artist}</p>
       </div>
     </div>

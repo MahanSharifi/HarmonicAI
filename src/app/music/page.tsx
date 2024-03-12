@@ -57,9 +57,9 @@ export default function MusicPage() {
                         <TabsTrigger value="music" className="relative">
                           Music
                         </TabsTrigger>
-                        <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
+                        <TabsTrigger value="podcasts">Map</TabsTrigger>
                         <TabsTrigger value="live" disabled>
-                          Live
+                          SIT TIGHT! More Features to Come
                         </TabsTrigger>
                       </TabsList>
                       <div className="ml-auto mr-4">
@@ -76,10 +76,10 @@ export default function MusicPage() {
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
-                            Listen Now
+                            Reccomendations for you
                           </h2>
                           <p className="text-sm text-muted-foreground">
-                            Top picks for you. Updated daily.
+                            Curated playlists based on location.
                           </p>
                         </div>
                       </div>
@@ -103,10 +103,10 @@ export default function MusicPage() {
                       </div>
                       <div className="mt-6 space-y-1">
                         <h2 className="text-2xl font-semibold tracking-tight">
-                          Made for You
+                          Recently
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                          Your personal playlists. Updated daily.
+                          What you've been listening to lately.
                         </p>
                       </div>
                       <Separator className="my-4" />
