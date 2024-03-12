@@ -109,12 +109,24 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    const storedAccessToken = localStorage.getItem('accessToken') ?? '';
-    if (storedAccessToken !== '' && storedAccessToken !== 'undefined') {
-      fetchProfile(storedAccessToken).then((profileData) => {
-        setProfile(profileData);
-        console.log({profileData})
-      });
+    const accessTokenExpiration = localStorage.getItem('accessTokenExpiration');
+    const currentTime = new Date().getTime();
+    const isTokenExpired = accessTokenExpiration && new Date(accessTokenExpiration).getTime() < currentTime;
+
+    if (isTokenExpired) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('accessTokenExpiration');
+      console.log('Access token expired. Please login again.');
+    } else {
+      const storedAccessToken = localStorage.getItem('accessToken') ?? '';
+      if (storedAccessToken !== '' && storedAccessToken !== 'undefined') {
+        fetchProfile(storedAccessToken).then((profileData) => {
+          setProfile(profileData);
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('accessTokenExpiration');
+          console.log('setting profileData', profileData);
+        });
+      }
     }
   }, []);
 
@@ -133,8 +145,6 @@ export default function Profile() {
       <h1>Welcome, {profile.display_name}!</h1>
       <p>Email: {profile.email}</p>
       <p>Country: {profile.country}</p>
-
-    
       {/* Display other profile data as needed */}
     </div>
   );
