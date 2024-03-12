@@ -5,6 +5,7 @@ import { PlusCircledIcon } from "@radix-ui/react-icons"
 import { Button } from "~/components/ui/button"
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area"
 import { Separator } from "~/components/ui/separator"
+import SpotifyMaps from "~/app/_components/get-google-maps"; 
 import {
   Tabs,
   TabsContent,
@@ -132,7 +133,8 @@ export default function MusicPage() {
                       value="podcasts"
                       className="h-full flex-col border-none p-0 data-[state=active]:flex"
                     >
-                      <div className="flex items-center justify-between">
+                      <SpotifyMaps/>
+                      {/* <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
                             New Episodes
@@ -143,7 +145,7 @@ export default function MusicPage() {
                         </div>
                       </div>
                       <Separator className="my-4" />
-                      <PodcastEmptyPlaceholder />
+                      <PodcastEmptyPlaceholder /> */}
                     </TabsContent>
                   </Tabs>
                 </div>

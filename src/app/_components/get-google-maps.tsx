@@ -6,10 +6,9 @@ import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from '@react-google-map
 import { env } from '~/env';
 import { Button } from '~/components/ui/button';
 import { listenNowAlbums } from '../music/data/albums';
-
 const containerStyle = {
-    width: '800px',
-    height: '800px'
+    width: '100%',
+    height: '100%'
 };
 
 const center = {
@@ -17,7 +16,7 @@ const center = {
     lng: -80.5230112413
 };
 
-function GoogleMapsComponent() {
+function SpotifyMaps() {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
@@ -47,10 +46,6 @@ function GoogleMapsComponent() {
             }
         ]
     }
-
-
-
-
 
     return isLoaded ? (
         <GoogleMap
@@ -82,4 +77,4 @@ function GoogleMapsComponent() {
     ) : <></>
 }
 
-export default React.memo(GoogleMapsComponent)
+export default React.memo(SpotifyMaps)
