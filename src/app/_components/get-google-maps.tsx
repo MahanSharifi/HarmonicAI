@@ -11,10 +11,9 @@ const containerStyle = {
 };
 
 const center = {
-    lat: 43.4718664459, 
+    lat: 43.4718664459,
     lng: -80.5230112413
-  };
-
+};
 
 function GoogleMapsComponent() {
     const { isLoaded } = useJsApiLoader({
@@ -36,38 +35,66 @@ function GoogleMapsComponent() {
         setMap(null)
     }, [])
 
-    const lat = -3.745
-    const lng = -38.523
-    const title = ' test laurier'
-    const options =  {
-        backgroundColor:'red',
-        styles : [
+    const options = {
+        backgroundColor: 'red',
+        styles: [
             {
                 featureType: 'poi',
                 elementType: 'labels',
-                stylers: [{ visibility: 'off' }] 
+                stylers: [{ visibility: 'off' }]
             }
         ]
-    } 
+    }
+
+    interface DataItem {
+        position: {
+            lat: number;
+            lng: number;
+        };
+        title: string;
+        username: string;
+    }
+
+    const data: DataItem[] = [
+        {
+            position: {
+                lat: 43.472778,
+                lng: -80.543611
+            },
+            title: 'lazeez',
+            username: 'eden'
+        },
+        { 
+            position: { 
+                lat: 43.467998128, 
+                lng: -80.537331184 
+            },
+            title: 'laurier',
+            username: 'dana porter'
+        }
+    ]
 
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={20}
+            // zoom={1}
+            // panTo={position}
             onLoad={onLoad}
             onUnmount={onUnmount}
             options={options}
         >
-            { /* Child components, such as markers, info windows, etc. */}
-            <Marker
-                position={center}
-                title={title}>
-
-                     <InfoWindow>
-                        <h1 className="text-black">Eden Chan</h1>
-                     </InfoWindow>
+            {data.map((item, index) => (
+                <Marker
+                    key={index}
+                    position={item.position}
+                    title={item.title}
+                >
+                    <InfoWindow>
+                        <h1 className="text-black">{item.username}</h1>
+                    </InfoWindow>
                 </Marker>
+            ))}
 
             <></>
         </GoogleMap>
