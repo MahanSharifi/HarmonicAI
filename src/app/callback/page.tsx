@@ -42,6 +42,8 @@ export default function Callback() {
         // Store the access token in local storage or state management solution
         if (accessToken) {
           localStorage.setItem('accessToken', accessToken);
+          const expirationTime = new Date(new Date().getTime() + 60 * 60 * 1000);
+          localStorage.setItem('accessTokenExpiration', expirationTime.toString());
           router.push('/');
         }
       });
