@@ -29,6 +29,7 @@
     "@trpc/next": "^10.45.1",
     "@trpc/react-query": "^10.45.1",
     "@trpc/server": "^10.45.1",
+    "@vis.gl/react-google-maps": "^0.7.1",
     "better-sqlite3": "^9.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

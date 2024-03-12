@@ -11,9 +11,11 @@ const containerStyle = {
     height: '100%'
 };
 
+
+ 
 const center = {
-    lat: 43.4718664459,
-    lng: -80.5230112413
+    lat: -80.5230112413,
+    lng: 43.4718664459,
 };
 
 function SpotifyMaps() {

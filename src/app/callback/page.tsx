@@ -44,7 +44,7 @@ export default function Callback() {
           localStorage.setItem('accessToken', accessToken);
           const expirationTime = new Date(new Date().getTime() + 60 * 60 * 1000);
           localStorage.setItem('accessTokenExpiration', expirationTime.toString());
-          router.push('/');
+          router.push('/music');
         }
       });
     }
@@ -52,3 +52,5 @@ export default function Callback() {
 
   return <div>Loading...</div>;
 }
+
+

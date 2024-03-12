@@ -4,8 +4,15 @@ import Link from "next/link";
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
-import Profile from "~/app/_components/get-profile";
+<<<<<<< Updated upstream
+import SpotifyLogin from "~/app/_components/get-profile";
 import SpotifyMaps from "./_components/get-google-maps";  
+=======
+import Profile from "~/app/_components/get-profile";
+import GoogleMapsComponent from "./_components/get-google-maps";
+import { MapContainer } from "./_components/get-locations";
+import { SearchMap } from "./_components/search-map";
+>>>>>>> Stashed changes
 
 export default async function Home() {
   noStore();
@@ -14,7 +21,17 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+<<<<<<< Updated upstream
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+=======
+        {/* <MapContainer/> */}
+        <SearchMap/>
+     
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-2xl text-white">
+            {hello ? hello.greeting : "Loading tRPC query..."}
+          </p>
+>>>>>>> Stashed changes
 
         <div className="flex flex-col items-center gap-2">
          
@@ -30,9 +47,16 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <Profile/>
+<<<<<<< Updated upstream
+        <SpotifyLogin/>
         <SpotifyMaps/>
       </div>
+=======
+        {/* <Profile/> */}
+        <GoogleMapsComponent/>
+        {/* <CrudShowcase /> */}
+
+>>>>>>> Stashed changes
     </main>
   );
 }

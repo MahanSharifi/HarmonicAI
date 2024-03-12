@@ -1,3 +1,4 @@
+'use client'
 import { Metadata } from "next"
 import Image from "next/image"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
@@ -5,7 +6,7 @@ import { PlusCircledIcon } from "@radix-ui/react-icons"
 import { Button } from "~/components/ui/button"
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area"
 import { Separator } from "~/components/ui/separator"
-import SpotifyMaps from "~/app/_components/get-google-maps"; 
+import SpotifyMaps from "~/app/_components/get-google-maps";
 import {
   Tabs,
   TabsContent,
@@ -19,31 +20,23 @@ import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder"
 import { Sidebar } from "./components/sidebar"
 import { listenNowAlbums, madeForYouAlbums } from "./data/albums"
 import { playlists } from "./data/playlists"
+import SpotifyLogin from "../_components/get-profile"
+import { useState } from "react"
+import { UserProfile } from "./components/spotify-api"
 
-export const metadata: Metadata = {
-  title: "Music App",
-  description: "Example music app using the components.",
-}
+// export const metadata: Metadata = {
+//   title: "Music App",
+//   description: "Example music app using the components.",
+// }
 
 export default function MusicPage() {
+
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [recentlyPlayed, setRecentlyPlayed] = useState(null);
+
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/music-light.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/music-dark.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="hidden dark:block"
-        />
-      </div>
+    <SpotifyLogin profile={profile} setProfile={setProfile} recentlyPlayed={recentlyPlayed} setRecentlyPlayed={setRecentlyPlayed}/>
       <div className="hidden md:block">
         <Menu />
         <div className="border-t">
@@ -77,7 +70,7 @@ export default function MusicPage() {
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
-                            Reccomendations for you
+                            Recommendations for you
                           </h2>
                           <p className="text-sm text-muted-foreground">
                             Curated playlists based on location.
@@ -128,12 +121,58 @@ export default function MusicPage() {
                           <ScrollBar orientation="horizontal" />
                         </ScrollArea>
                       </div>
+                      <div className="mt-6 space-y-1">
+                        <h2 className="text-2xl font-semibold tracking-tight">
+                          Recently
+                        </h2>
+                        <p className="text-sm text-muted-foreground">
+                          What you've been listening to lately on Spotify.
+                        </p>
+                      </div>
+                      <Separator className="my-4" />
+                      <div className="relative">
+                        <ScrollArea>
+                          <div className="flex space-x-4 pb-4">
+                            {Array.isArray(recentlyPlayed) && recentlyPlayed.map(({context, track}, index) => {
+                              const { album, artists, external_urls, name, preview_url, type, id} = track
+                              const {  images } = album
+
+                              const image_url = images[0].url
+                              const { spotify } = external_urls
+
+                              const _album = {
+                                name,
+                                artist: "Harmonic.AI",
+                                locationName: "Waterloo E7 Grind",
+                                playlistID: "1fVGCu_hQbmgkzocxNrvXQ",
+                                position: {
+                                  lng: 43.4730,
+                                  lat: -80.5395,
+                                },
+                                cover: image_url,
+                              }
+
+                              return (
+                                <AlbumArtwork
+                                  key={_album.name + index}
+                                  album={_album}
+                                  className="w-[150px]"
+                                  aspectRatio="square"
+                                  width={150}
+                                  height={150}
+                                />)
+                            })
+                            }
+                          </div>
+                          <ScrollBar orientation="horizontal" />
+                        </ScrollArea>
+                      </div>
                     </TabsContent>
                     <TabsContent
                       value="podcasts"
                       className="h-full flex-col border-none p-0 data-[state=active]:flex"
                     >
-                      <SpotifyMaps/>
+                      <SpotifyMaps />
                       {/* <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">

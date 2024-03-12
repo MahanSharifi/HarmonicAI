@@ -125,3 +125,4 @@ export interface Album {
       cover: "/TakeCare.jpeg",
     },
   ]
+
