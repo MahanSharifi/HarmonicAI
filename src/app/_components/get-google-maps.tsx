@@ -39,7 +39,7 @@ function SpotifyMaps() {
     }, [])
 
     const options = {
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
         styles: [
             {
                 featureType: 'poi',
@@ -68,7 +68,7 @@ function SpotifyMaps() {
                     <InfoWindow>
                         <>
                         <h1 className="text-black">{item.locationName}</h1>
-                        <iframe  src={`https://open.spotify.com/embed/playlist/${item.playlistID}?utm_source=generator`} width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <iframe  src={`https://open.spotify.com/embed/playlist/${item.playlistID}?utm_source=generator`} width="100%" height="352"  allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                         </>
                     </InfoWindow>
                 </Marker>
