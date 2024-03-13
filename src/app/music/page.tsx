@@ -100,7 +100,7 @@ export default function MusicPage() {
                           Recently
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                          What you've been listening to lately.
+                          What you've been listening to lately at your most visited locations.
                         </p>
                       </div>
                       <Separator className="my-4" />
@@ -142,8 +142,8 @@ export default function MusicPage() {
 
                               const _album = {
                                 name,
-                                artist: "Harmonic.AI",
-                                locationName: "Waterloo E7 Grind",
+                                artist: "",
+                                locationName: "",
                                 playlistID: "1fVGCu_hQbmgkzocxNrvXQ",
                                 position: {
                                   lng: 43.4730,
