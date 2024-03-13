@@ -2,13 +2,17 @@ import { cn } from "~/lib/utils"
 import { Button } from "~/components/ui/button"
 import { ScrollArea } from "~/components/ui/scroll-area"
 import Link from 'next/link';
-import { Playlist } from "../data/playlists"
+
+import { Playlist } from "../../data/playlists"
+import { useRouter } from "node_modules/next/router"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   playlists: Playlist[]
 }
 
-export function Sidebar({ className, playlists }: SidebarProps) {
+
+export function SidebarTranslation({ className, playlists }: SidebarProps) {
+
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
@@ -24,7 +28,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
             Discover
           </h2>
           <div className="space-y-1">
-            <Button variant="secondary" className="w-full justify-start">
+            <Link href="../music" passHref>
+            <Button variant="ghost" className="w-full justify-start">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -40,8 +45,9 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               </svg>
               GeoSpatial Recommendations
             </Button>
-            <Link href="../music/translation" passHref>
-            <Button variant="ghost" className="w-full justify-start">
+            </Link>
+            
+            <Button variant="secondary" className="w-full justify-start" >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -59,8 +65,6 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               </svg>
               Translation
             </Button>
-            </Link>
-            
             <Button variant="ghost" className="w-full justify-start">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
